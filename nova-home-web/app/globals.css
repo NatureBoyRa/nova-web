@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+/* Every in-page anchor target sits below the fixed glass navbar; without
+   this, `Skip to content` and every nav/footer `#section` link scrolls the
+   section title half-hidden behind it. */
+section[id],
+#main-content {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: theme("colors.nova.bg");
+  color: theme("colors.nova.text");
+}
+
+::selection {
+  background: theme("colors.nova.cyan / 25%");
+  color: theme("colors.nova.text");
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: theme("colors.nova.bg");
+}
+::-webkit-scrollbar-thumb {
+  background: theme("colors.nova.surface2");
+  border-radius: 999px;
+  border: 2px solid theme("colors.nova.bg");
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.nova.borderStrong");
+}
+
+/* Modern browsers draw the default outline following the focused
+   element's own border-radius, so a pill button or circular icon button
+   gets a pill/circular focus ring for free — no extra rule needed here. */
+:focus-visible {
+  outline: 2px solid theme("colors.nova.cyan");
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: theme("colors.nova.cyan");
+}
+
+.glass {
+  background: linear-gradient(
+    180deg,
+    theme("colors.nova.surface2 / 70%"),
+    theme("colors.nova.surface / 55%")
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid theme("colors.nova.border");
+}
+
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    theme("colors.nova.text") 20%,
+    #7ff1ff 55%,
+    #a594ff 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
